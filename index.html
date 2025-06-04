@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            border:2px solid black;
+            text-align: center;
+            width: 600px;
+            height: 600px;
+            display: grid;
+            justify-items: center;
+            gap:10px;
+            padding:10px;
+
+        }
+
+        .item {
+            background-color: #83cbeb;
+            width: 100%;
+            height: 100%;
+           
+        }
+    </style>
+</head>
+
+<body>
+
+    <button onclick="exibir()">EXIBIR MATRIZ</button>
+   
+    <div class="container" id="container">
+    </div>
+
+    <input id="ipt_linhaPesquisa" placeholder="Pesquisa de Linha">
+    <input id="ipt_colunaPesquisa" placeholder="Pesquisa de Coluna">
+    <button onclick="consultar()">Consultar</button>
+     <div id="resultado"></div>
+
+</body>
+
+<script>
+
+    let matriz = []
+
+
+    async function exibir() {
+        let colunas = 3
+        let linhas = 3
+        let valorInicial = 5;
+        matriz =[];
+
+        const container = document.getElementById("container")
+        while (container.firstChild) {
+  container.removeChild(container.firstChild);
+}
+        container.style.display = "grid"
+        container.style.gridTemplateColumns = `repeat(${colunas}, 1fr)`
+
+        for (let linha = 0; linha < linhas; linha++) {
+            matriz[linha] = []
+            for (let coluna = 0; coluna < colunas; coluna++) {
+                matriz[linha][coluna] = valorInicial
+                valorInicial += 5
+                const item = document.createElement('div')
+                container.appendChild(item)
+                item.classList.add('item')
+                item.textContent = matriz[linha][coluna]
+            }
+
+        }
+
+        console.log(matriz)
+    }
+
+    function consultar() {
+        let linhaPesquisa = ipt_linhaPesquisa.value;
+        let colunaPesquisa = ipt_colunaPesquisa.value;
+        console.log(colunaPesquisa, linhaPesquisa)
+
+        let pesquisa = matriz[linhaPesquisa][colunaPesquisa];
+        console.log(pesquisa)
+
+       let resultadoPesquisa = `O valor desta linha e coluna é: ${pesquisa}` 
+
+        resultado.innerHTML = resultadoPesquisa;
+
+
+    }
+
+    function somar(){
+
+    }
+</script>
+
+</html>
